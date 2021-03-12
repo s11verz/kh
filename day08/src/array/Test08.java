@@ -8,17 +8,17 @@ public class Test08 {
 		Scanner sc=new Scanner(System.in);
 		int []data=new int[5];
 		
-		for(int i=0;i<5;i++) {
+		for(int i=0;i<data.length;i++) {
 			System.out.println("숫자를 입력하세요.");
 			data[i]=sc.nextInt();
 		}
-		for(int j=0;j<5;j++) {
+		for(int j=0;j<data.length;j++) {
 			System.out.println(data[j]);
 		}
 		
 		int min=data[0];
 		int num=0;
-		for(int k=0;k<5;k++) {
+		for(int k=0;k<data.length;k++) {
 			if(data[k]<=min) {
 				min=data[k];
 				num=k;
