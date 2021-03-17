@@ -16,9 +16,12 @@ public class Test01 {
 		b.result();
 		c.result();
 		
-		int standard_avg=(a.off_season+a.quasi+a.peak_season)/3;
+		/*int standard_avg=(a.off_season+a.quasi+a.peak_season)/3;
 		int deluxe_avg=(c.off_season+c.quasi+c.peak_season)/3;
 		int dif=deluxe_avg-standard_avg;
+		System.out.println("평균값의 차이는 "+dif+"원 입니다.");*/
+		
+		int dif=c.getAverage()-a.getAverage();
 		System.out.println("평균값의 차이는 "+dif+"원 입니다.");
 		
 		

@@ -45,6 +45,11 @@ public class hotel {
 		
 		
 	}
+	//평균 요금을 반환하는 메소드 구현
+	//getter 메소드
+	int getAverage() {
+		return (this.off_season+this.quasi+this.peak_season)/3;
+	}
 	
 	
 }
