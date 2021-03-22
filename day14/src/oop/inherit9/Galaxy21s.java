@@ -5,6 +5,7 @@ public class Galaxy21s extends Samsung{
 
 	public Galaxy21s(String number, String color) {
 		super(number, color);
+		
 		// TODO Auto-generated constructor stub
 	}
 

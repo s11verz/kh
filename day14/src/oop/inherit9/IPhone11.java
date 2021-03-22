@@ -6,6 +6,7 @@ public class IPhone11 extends Apple{
 		super(number, color);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	@Override
 	public void siri() {

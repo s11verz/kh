@@ -6,6 +6,7 @@ public abstract class Apple extends Phone{
 			
 			this.color = color;
 			}
+			else return;
 		}
 	public Apple(String number, String color) {
 		super(number, color);

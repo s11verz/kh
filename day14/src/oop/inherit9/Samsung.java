@@ -6,10 +6,14 @@ public abstract class Samsung extends Phone{
 		if(color=="골드"||color=="실버"||color=="아쿠아") {
 		
 		this.color = color;
+		}else {
+			
+			return;
 		}
 	}
 	public Samsung(String number, String color) {	
 		super(number, color);
+		
 			
 	}
 	

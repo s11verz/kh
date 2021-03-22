@@ -9,6 +9,9 @@ public abstract class Phone {
 		this.setNumber(number);
 		this.setColor(color);
 	}
+	public Phone(String color) {
+		this.setColor(color);
+	}
 	
 
 	public String getNumber() {
@@ -31,5 +34,10 @@ public abstract class Phone {
 	public abstract void call();
 	public abstract void sms();
 	public abstract void info();
+	
+	public static final int GALAXY21S=0;
+	public static final int GALAXYNOTE10=1;
+	public static final int IPHONE11=2;
+	public static final int IPHONE12=3;
 
 }

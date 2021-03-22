@@ -4,7 +4,8 @@ public class Test01 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Galaxy21s a=new Galaxy21s("01099345679","골드");
+		Galaxy21s a=new Galaxy21s("01099345679","화이트");
+		
 		a.info();
 		a.call();
 		a.sms();
