@@ -7,13 +7,11 @@ public class Test10 {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("우편번호를 입력하세요.(신주소/구주소)");
 		String postNum=sc.nextLine();
-		String regex1="^\\d{5}$";
-		String regex2="^\\d{6}$";
+		String regex1="^\\d{5}|\\d{6}$";
+		
 		
 		if(Pattern.matches(regex1, postNum))
 			System.out.println("올바른 우편번호 입니다.");
-		else if(Pattern.matches(regex2, postNum))
-				System.out.println("올바른 우편번호 입니다.");
 		else System.out.println("우편번호가 틀렸습니다.");
 		
 		System.out.println("비밀번호를 입력하세요.");
@@ -32,9 +30,9 @@ public class Test10 {
 		else
 			System.out.println("이름이 틀렸습니다.");
 		
-		System.out.println("전화번호를 입력하세요.(-포함)");
+		System.out.println("전화번호를 입력하세요.");
 		String number=sc.nextLine();
-		String regex5="^^010-[1-9]\\d{3}-\\d{4}$";
+		String regex5="^(010[1-9]\\d{3}\\d{4}|010-[1-9]\\d{3}-\\d{4})$";
 		if(Pattern.matches(regex5,number))
 			System.out.println("올바른 번호 입니다.");
 		else
