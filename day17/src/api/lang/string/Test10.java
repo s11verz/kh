@@ -34,7 +34,7 @@ public class Test10 {
 		
 		System.out.println("전화번호를 입력하세요.(-포함)");
 		String number=sc.nextLine();
-		String regex5="^010-\\d{4}-\\d{4}$";
+		String regex5="^^010-[1-9]\\d{3}-\\d{4}$";
 		if(Pattern.matches(regex5,number))
 			System.out.println("올바른 번호 입니다.");
 		else
