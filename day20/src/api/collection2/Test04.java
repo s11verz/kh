@@ -31,7 +31,8 @@ public class Test04 {
 		
 		//차집합
 		Set<Integer> e=new TreeSet<>();
-		e.removeAll(b);//e에서 b에 포함된 항목을 삭제
+		e.addAll(a);
+		e.removeAll(b);//a에서 b에 포함된 항목을 삭제
 		System.out.println(e );
 		
 		

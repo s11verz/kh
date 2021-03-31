@@ -21,8 +21,8 @@ public class Test03 {
 			String item=iter.next();
 			System.out.println(item);
 		}
-		
-		for(String item:set) {
+		//set에서 차례대로 객체를 꺼내서 item에다가 넣겠음
+		for(String item:set) { 
 			System.out.println(item);
 		}
 
