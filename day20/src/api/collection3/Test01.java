@@ -15,10 +15,10 @@ public class Test01 {
 		
 		System.out.println(map.size());//사이즈
 		
-		System.out.println(map.containsKey("피카츄"));
-		System.out.println(map.containsValue(100));
+		System.out.println(map.containsKey("피카츄"));// true
+		System.out.println(map.containsValue(100));//true
 		
-		System.out.println(map);
+		System.out.println(map);//전부출력
 		
 		
 		

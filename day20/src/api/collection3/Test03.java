@@ -16,11 +16,11 @@ public class Test03 {
 		map.put("파이리",77);
 		map.put("꼬부기",63);
 		//Map<String, Integer> → Set<String> → Iterator<String> 또는 확장 for
-		Set<String> set=map.keySet();
+		/*Set<String> set=map.keySet();
 		for(String name:set) {
 			System.out.println("이름="+name);
 			System.out.println("점수="+map.get(name));
-		}
+		}*/
 		Set<Entry<String, Integer>> entrys = map.entrySet();
 		for(Entry<String, Integer> entry : entrys) {
 			System.out.println("이름 = " + entry.getKey());
