@@ -12,7 +12,7 @@ import java.net.UnknownHostException;
 public class Client {
 	public static void main(String[] args) throws IOException  {
 		String host="1.220.236.75";
-		int port=3000;
+		int port=30000;
 		
 		InetAddress address=InetAddress.getByName(host);
 		Socket socket=new Socket(address, port);
