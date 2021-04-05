@@ -20,13 +20,13 @@ public class Server {
 					i--;
 				}
 			}
-			
 		}for(int i=0;i<6;i++) {
 			out.write(array[i]);
 		}
 		out.close();
 		socket.close();
 		server.close();
+			
 						
 	}
 
