@@ -15,17 +15,17 @@ public class Server {
 		System.out.println(socket.getInetAddress() + "가 접속하였습니다.");
 		InputStream in = socket.getInputStream();
 
-		File dir = new File("test.kh");//파일 알아서 지정
+		File dir = new File("kh");//파일 알아서 지정
 		dir.mkdirs();
-		File target = new File(dir, "test.kh");
+		File target = new File(dir, "test");
 		FileOutputStream out = new FileOutputStream(target);
 		System.out.println("사용자가 보낸 파일을 수신합니다.");
-		byte[] buffer=new byte[1024];
+		//byte[] buffer=new byte[1024];
 		while (true) {
-			int n = in.read(buffer);
+			int n = in.read();
 			if (n == -1)
 				break;
-			out.write(buffer,0,n);
+			out.write(n);
 		}
 		System.out.println("사용자가 보낸 파일을 모두 수신하였습니다.");
 		out.close();

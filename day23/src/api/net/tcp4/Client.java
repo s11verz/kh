@@ -18,14 +18,14 @@ public class Client {
 		Socket socket=new Socket(address, port);
 		OutputStream out=socket.getOutputStream();
 		
-		File target=new File("kh");//파일 알아서 지정
+		File target=new File("C:/test.mp4");//파일 알아서 지정
 		FileInputStream in=new FileInputStream(target);
-		byte[] buffer= new byte[1024];
+		//byte[] buffer= new byte[1024];
 		System.out.println("파일 전송을 시작합니다.");
 		while(true) {
-			int n=in.read(buffer);
+			int n=in.read();
 			if(n==-1) break;
-			out.write(buffer,0,n);
+			out.write(n);
 		}
 		System.out.println("파일 전송이 완료되었습니다.");
 		
