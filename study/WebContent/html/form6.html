@@ -1,0 +1,44 @@
+  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 가입</title>
+</head>
+<body>
+	<h1>회원 정보 입력</h1>
+	
+	<!-- 
+		fieldset, legend
+		= fieldset : 하나의 입력 단위(그룹)
+		= legend : 입력 그룹의 제목
+	 -->
+	
+	<form action="/study/member/insert.kh">
+		
+		<fieldset>
+			<legend>필수 정보</legend>
+			
+			ID : 
+			<input type="text" name="memberId" required><br><br>
+			Password : 
+			<input type="password" name="memberPw" required><br><br>
+			Nickname : 
+			<input type="text" name="memberNick" required><br><br>
+			Birth : 
+			<input type="date" name="memberBirth" required><br><br>
+			Mobile : 
+			<input type="tel" name="memberPhone" required><br><br>
+		</fieldset>
+		
+		<fieldset>
+			<legend>선택 정보</legend>
+			
+			E-mail : 
+			<input type="email" name="memberEmail"><br><br>
+		</fieldset>
+		
+		<input type="submit" value="회원가입">
+	</form>
+</body>
+</html>

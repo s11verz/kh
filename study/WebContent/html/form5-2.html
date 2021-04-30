@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 등록</title>
+</head>
+<body>
+	<h1>상품 정보 입력</h1>
+	
+	<!-- 
+		form 내부의 입력창에는 정규표현식 검사를 추가할 수 있다.
+		
+		- pattern 속성을 만들고 내부에 정규표현식을 작성
+		- 일반적으로 pattern 속성보다 javascript 영역에서 처리하는 경우가 훨씬 많다
+	 -->
+	
+	<form action="/study/product/insert.kh">
+	
+		이름 : <input type="text" name="name" required pattern="[가-힣0-9]{1,10}"><br><br>
+		유형 : 
+		<select name="type" required>
+			<option value="">선택하세요</option>
+			<option>과자</option>
+			<option>아이스크림</option>
+			<option>주류</option>
+			<option>사탕</option>
+		</select>
+		<br><br>
+		
+		가격 : <input type="number" name="price" required><br><br>
+		제조일 : <input type="date" name="made" required><br><br>
+		유통기한 : <input type="date" name="expire" required><br><br>
+	
+		<input type="submit" value="등록">
+		<input type="reset" value="초기화">
+		
+	</form>
+</body>
+</html>
