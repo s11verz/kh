@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형 디자인</title>
+    <style>
+        /*
+        스마트 tv >=1200px
+        pc >=996px
+        태블릿 >=720px
+        모바일 (나머지)
+        */
+        .test{
+            background-color:gray;
+        }
+        .test>h1{
+            font-size:2rem;
+        }
+        @media screen and (max-width:995px){
+            .test{
+                background-color:yellow;
+            }
+            .test>h1{
+            font-size:1.5rem;
+        }
+        }
+        @media screen and (max-width:719px){
+            .test{
+                background-color:white;
+            }
+            .test>h1{
+            font-size:1.2rem;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow: ellipsis;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="test">
+        <h1>반응형 웹 디자인을 살펴보겠습니다</h1>
+    </div>
+</body>
+</html>
