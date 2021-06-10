@@ -114,3 +114,54 @@
 .table.table-striped > tbody > tr:nth-child(2n) {
 	background-color:rgb(231, 241, 253);
 }
+
+/*pagination 스타일링*/
+.pagination > a {
+	color:grey;
+	text-decoration: none;
+	display:inline-block; 
+	min-width:35px;
+	
+	border:1px solid transparent;
+	padding:0.5rem;
+	text-align: center;
+}
+.pagination > a:hover,
+.pagination > a.on {
+	border:1px solid lightgray;
+	color:rgb(255,85,146);
+}
+
+.pagination-list {
+	list-style: none;
+	margin:0px;
+	padding:0px;
+}
+.pagination-list > li {
+	display: inline-block;
+	min-width: 35px;
+	
+	border:1px solid transparent;
+	padding:0.5rem;
+	text-align:center;
+	cursor: pointer;
+}
+.pagination-list > li > a {
+	color:gray;
+	text-decoration: none;
+}
+.pagination-list > li:hover,
+.pagination-list > li.on {
+	border:1px solid lightgray;
+}
+.pagination-list > li:hover > a,
+.pagination-list > li.on > a {
+	color:rgb(255,85,146);
+}
+
+/*float 스타일링*/
+.float-container::after {
+	content:"";
+	display:block;
+	clear:both;
+}

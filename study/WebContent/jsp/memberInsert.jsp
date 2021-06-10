@@ -20,7 +20,7 @@
 <tr>
 <th>비밀번호</th>
 <td>
-<input type="text" name="memberPq" required></td>
+<input type="text" name="memberPw" required></td>
 </tr>
 <tr>
 <th>닉네임</th>

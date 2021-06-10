@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="EUC-KR"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="study" path="/study" reloadable="true" source="org.eclipse.jst.jee.server:study"/></Host>
+      <Context docBase="study" path="/study" reloadable="true" source="org.eclipse.jst.jee.server:study"/><Context docBase="home" path="/home" reloadable="true" source="org.eclipse.jst.jee.server:home"/><Context docBase="SemiProject" path="/SemiProject" reloadable="true" source="org.eclipse.jst.jee.server:SemiProject"/><Context docBase="SemiProject22222" path="/SemiProject22222" reloadable="true" source="org.eclipse.jst.jee.server:SemiProject22222"/><Context docBase="SemiProject2" path="/SemiProject2" reloadable="true" source="org.eclipse.jst.jee.server:SemiProject2"/></Host>
     </Engine>
   </Service>
 </Server>
