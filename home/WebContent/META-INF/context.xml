@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+
+	<!-- 자원(DBCP)을 정의하고 운영 규칙을 설정하겠다 -->
+	<Resource 	name="jdbc/oracle"
+						type="javax.sql.DataSource"
+						auth="Container"
+						
+						driverClassName="oracle.jdbc.OracleDriver"
+						url="jdbc:oracle:thin:@localhost:1521:xe"
+						username="study"
+						password="study"
+						
+						maxTotal="20"
+						minIdle="5"
+						maxIdle="10"
+						maxWait="3000"></Resource>
+</Context>
