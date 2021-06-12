@@ -37,7 +37,7 @@ public class StudentInsertServlet extends HttpServlet{
 //			= 만약 이름이 겹칠 경우에 어떻게 처리할지도 설정할 수 있다.
 			
 //			String path = "C:/Users/user1";
-			String path = "C:/upload";
+			String path = "/Users/silverz/git/upload";
 			int maximumSize = 10 * 1024 * 1024;
 			String encoding = "UTF-8";
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();

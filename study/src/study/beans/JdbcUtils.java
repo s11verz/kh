@@ -11,7 +11,7 @@ public class JdbcUtils {
 	public static Connection getConnection(String username, String password) throws Exception {
 		Class.forName("oracle.jdbc.OracleDriver");
 		Connection con = DriverManager.getConnection(
-				"jdbc:oracle:thin:@localhost:1521:xe", username, password);
+				"jdbc:oracle:thin:@10.211.55.3", username, password);
 		return con;
 	}
 	
