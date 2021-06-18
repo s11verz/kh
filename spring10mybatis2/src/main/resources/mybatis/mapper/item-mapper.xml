@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="item">
+	<!-- 구문 생성 -->
+	<insert id="insert">
+		insert into item
+		values(item_seq.nextval, '피자10판',50000)
+	</insert >
+	
+	<!-- mybatis는 파라미터를 ?가 아니라 #{이름} 형태로 지정 -->
+	<insert id="insert2">
+		insert into item values(
+			item_seq.nextval,#{itemName},#{itemPrice}
+		)
+	</insert>
+	
+	<insert id="insert3" parameterType="ItemDto">
+		insert into item values(
+			item_seq.nextval,#{itemName},#{itemPrice}
+		)
+	</insert>
+	
+	<insert id="insert4" parameterType="map">
+		insert into item values(
+			item_seq.nextval,#{itemName},#{itemPrice}
+		)
+	</insert>
+	
+	
+	<select id="select1" resultType="ItemDto">
+		select * from item
+	</select>
+	
+	<!-- <select id="select2" resultType="ItemDto" parameterType="string"> -->
+	<select id="select2" resultType="ItemDto" parameterType="map">
+		select * from item where item_name=#{itemName}
+	</select>
+	
+	<!-- mybatis 2가지 종류의 바인딩
+	1. 정적 바인딩: 있는 그대로의 데이터를 추가적인 처리 없이 구문에 할당
+	2. 동적 바인딩: 데이터를 형태에 맞게 해석하여 따옴표 등을 처리한 뒤 구문에 할당 -->
+	<select id="select3" resultType="ItemDto" parameterType="map">
+		select * from item where ${type}=#{keyword}
+	</select>
+	
+	<select id="select4" resultType="ItemDto" parameterType="int">
+		select * from item where item_no=#{itemNo}
+	</select>
+	
+	
+	<update id="update1" parameterType="ItemDto">
+		update item set item_name=#{itemName}, item_price=#{itemPrice} 
+			where item_no=#{itemNo}
+	</update>
+	
+	<delete id="delete1" parameterType="int">
+		delete item where item_no = #{itemNo}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
