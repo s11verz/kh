@@ -20,7 +20,7 @@ public class Test02 {
 		//SqlSession sqlSession=factory.openSession();//openSesiion(false)와 동일 
 		//SqlSession sqlSession=factory.openSession(true);//자동커밋 사용 
 		SqlSession sqlSession=factory.openSession(false);//자동커밋 미사용 
-		System.out.println(sqlSession);
+		//System.out.println(sqlSession);
 		
 		sqlSession.insert("item.insert");
 		sqlSession.commit();
