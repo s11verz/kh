@@ -21,9 +21,10 @@ public class TestController {
 		return "redirect:/";
 	}
 	
-	@ExceptionHandler(ArithmeticException.class) //예외를 처리할 수 있는 메소드를 지정할 때 사용 
-	public String handler1() {
-		return "error/handler1";
-	}
+//	@ExceptionHandler(Exception.class) //예외를 처리할 수 있는 메소드를 지정할 때 사용 
+//	public String handler1() {
+//		return "error/handler1";
+//	}
 
 }
+ 
