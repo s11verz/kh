@@ -43,7 +43,7 @@
 		
 		<!-- 기타 의존성 버전 -->
 		<org.aspectj-version>1.9.6</org.aspectj-version>
-		<org.slf4j-version>1.7.30</org.slf4j-version>
+		<org.slf4j-version>1.7.31</org.slf4j-version>
 		
 	</properties>
 	
