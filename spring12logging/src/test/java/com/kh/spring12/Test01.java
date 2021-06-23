@@ -16,6 +16,7 @@ public class Test01 {
 //		System.out.println("Warn Message");
 //		System.out.println("Error Message");
 		
+		log.trace("Trace Message");
 		log.debug("Debug Message");
 		log.info("Info Message");
 		log.warn("Warn Message");
