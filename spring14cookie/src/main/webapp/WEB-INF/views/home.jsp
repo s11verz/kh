@@ -10,6 +10,7 @@
 <h2>visit : ${cookie["visit"] }</h2>
 <h2>visit : ${cookie.visit.value }</h2>
 <h2>visit : ${cookie["visit"].value }</h2>
+<h2>visit : ${requestScope.visit}</h2>
 
 <h1><a href="create">쿠키 생성</a></h1>
  <h1><a href="delete">쿠키 삭제</a></h1>
@@ -22,3 +23,19 @@
  		<h2>쿠키가 있습니다</h2>
  	</c:otherwise>
  </c:choose>
+
+ 
+ <c:if test="%{cookie.visit==null}">
+ 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+ 	<script>
+ 		$(function(){
+ 			window.open("https://www.naver.com","naver","width=400, height=400");
+ 		});
+ 	</script>
+ 	
+ 	<div>
+ 		팝업 광고 모달 
+ 	</div>
+ </c:if>
+ 
+ 
