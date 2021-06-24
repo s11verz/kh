@@ -24,8 +24,8 @@
 	 -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kh</groupId>
-	<artifactId>spring15</artifactId>
-	<name>spring15transaction</name>
+	<artifactId>spring16</artifactId>
+	<name>spring16scheduling</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
