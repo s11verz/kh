@@ -11,7 +11,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
@@ -83,13 +85,16 @@
 	transaction 설정
 	1. 트랜잭션 관련 annotation 활성화 
 	2. 트랜잭션 매니저를 생성하며 연결 정보를 전달 (commit/rollback) - id를 transactionManager로 설정, 실제로 사용중인 연결 객체의 참조를 전달 
-	
-	
  -->
 	<tx:annotation-driven/>	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dbcpSource"></property>
 	</bean>
+	
+	<!-- 
+	schedular 설정 -task namespace를 추가하고 annotatio 활성화 설정 수행
+	 -->
+	<task:annotation-driven/>
 	
 </beans>
 
