@@ -2,6 +2,8 @@ package com.kh.spring14.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +42,35 @@ public class CookieController {
 		response.addCookie(cookie);		
 		return "redirect:/";
 	}
+	
+	@RequestMapping("/show")
+	public String show(HttpServletResponse response) {
+		Cookie cookie = new Cookie("show", "");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/hide")
+	public String hide(HttpServletResponse response) {
+		//시간 계산
+		Calendar c = Calendar.getInstance();//익일 0시 0분 0초
+		c.add(Calendar.DATE, 1);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		
+		Date d = new Date();//현재시간
+		
+		long gap = c.getTimeInMillis() - d.getTime();
+		int gapSecond = (int)(gap / 1000);
+		
+		Cookie cookie = new Cookie("show", "");
+		cookie.setMaxAge(gapSecond);
+		response.addCookie(cookie);
+		return "redirect:/";
+	}
+	
 }
 
 

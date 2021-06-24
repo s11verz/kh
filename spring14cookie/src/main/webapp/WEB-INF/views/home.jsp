@@ -38,4 +38,13 @@
  	</div>
  </c:if>
  
+  <hr>
+ 
+ <h1>오늘 하루 안보기</h1>
+ 
+ <h2>현재 상태 : ${cookie.show == null ? '보기' : '안보기'}</h2>
+ 
+ <h2><a href="show">보기</a></h2>
+ <h2><a href="hide">안보기</a></h2>
+ 
  
