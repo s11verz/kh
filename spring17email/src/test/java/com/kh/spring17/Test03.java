@@ -43,6 +43,7 @@ public class Test03 {
 		
 		helper.setSubject("마임메세지 테스트");
 		helper.setText("테스트 성공 히히!");
+//		helper.setText("<h1>안녕<h1>",true);
 		
 //		4. 전송
 		sender.send(message);
