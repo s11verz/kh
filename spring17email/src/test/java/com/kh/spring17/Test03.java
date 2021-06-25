@@ -25,16 +25,27 @@ public class Test03 {
 	
 	@Test
 	public void test() throws MessagingException {
-		MimeMessage message=sender.createMimeMessage();
+//		1. 마임메세지 객체 생성
+		MimeMessage message = sender.createMimeMessage();
 		
-		MimeMessageHelper helper=new MimeMessageHelper(message, false, "UTF-8");
+//		2. 설정도구 생성
+		MimeMessageHelper helper = new MimeMessageHelper(message, false, "UTF-8");
 		
-		String[] to= {"liisa9601@naver.com"};
+//		3. 정보 설정
+		String[] to = {"liisa9601@naver.com"};
 		helper.setTo(to);
 		
+//		String[] cc = {};
+//		helper.setCc(cc);
+		
+//		String[] bcc = {};
+//		helper.setBcc(bcc);
+		
 		helper.setSubject("마임메세지 테스트");
-		helper.setText("테스트 성공!");
-	
+		helper.setText("테스트 성공 히히!");
+		
+//		4. 전송
+		sender.send(message);
 	}
 
 }
