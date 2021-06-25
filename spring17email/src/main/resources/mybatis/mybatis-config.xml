@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
 <!-- mybatis 설정파일 -->
 
 <!DOCTYPE configuration
@@ -22,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<package name="패키지경로"/> 
 	-->
 	<typeAliases>
-	
+		<package name="com.kh.spring17.entity"/>
 	</typeAliases>	
 	
 	<!-- 데이터베이스 환경 설정 -->

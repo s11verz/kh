@@ -240,8 +240,10 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		   
-		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
-		<dependency>
+		<!-- 
+			이메일 의존성
+		 -->
+	 	<dependency>
 		    <groupId>javax.mail</groupId>
 		    <artifactId>mail</artifactId>
 		    <version>1.4.7</version>

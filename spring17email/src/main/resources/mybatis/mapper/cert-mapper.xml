@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cert">
+	
+	<!-- 
+		인증번호 등록 : 이메일과 인증번호를 현재시간으로 등록
+	 -->
+	<insert id="insert" parameterType="CertDto">
+		insert into cert values(#{email}, #{no}, sysdate)
+	</insert>
+	
+	<!-- 
+		인증번호 검사 : 인증번호가 유효한지 검사
+		= 부등호 등 XHTML에서 사용할 수 없는 문자가 있을 경우 허용 구문을 추가로 작성해야 한다.
+		= <![CDATA[  구문  ]]>
+	 -->
+	<select id="check" parameterType="CertDto" resultType="CertDto">
+		<![CDATA[
+			select * from cert 
+			where 
+				email = #{email} 
+				and 
+				no = #{no} 
+				and 
+				#{time} >= sysdate - 5 / 24 / 60
+		]]>
+	</select>
+	
+	<!-- 
+		인증번호 삭제
+		1. 이메일에 해당하는 인증번호 삭제
+		2. 5분이 지난 인증번호를 삭제(스케쥴러 구동)
+	 -->
+	<delete id="deleteByEmail" parameterType="string">
+		delete cert where email = #{email}
+	</delete>
+	
+	<delete id="deleteByTime">
+		<![CDATA[ 
+			delete cert where time < sysdate - 5/24/60
+		]]>
+	</delete>
+	
+</mapper>
+
+
+
+
