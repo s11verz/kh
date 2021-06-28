@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and 
 				no = #{no} 
 				and 
-				#{time} >= sysdate - 5 / 24 / 60
+				time >= sysdate - 5 / 24 / 60
 		]]>
 	</select>
 	
