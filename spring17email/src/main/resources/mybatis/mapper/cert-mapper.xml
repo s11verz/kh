@@ -8,9 +8,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 
 		인증번호 등록 : 이메일과 인증번호를 현재시간으로 등록
+		-insert : 단순 insert, 같은 이메일에 인증번호 여러번 생성이 불가능 
+		-insert2 : 최초 insert, 이후 updatq를 수행하도록 구문 구현 
 	 -->
 	<insert id="insert" parameterType="CertDto">
 		insert into cert values(#{email}, #{no}, sysdate)
+	</insert>
+	
+	<insert id="insert2" parameterType="CertDto">
+		<!-- cert 테이블을 이용하여 merge 작업을 수행하겠다
+				-CertDto 안에 있는 email이 C(cert)에 존재하는지?
+				-만약 발견했다면 
+					해당 이메일에 대한 인증번호와 인증시간을 갱신 
+				-만약 발견하지 못했다면 
+					이메일, 인증번호, 인증시간을 신규로 등록 
+		-->
+		merge into cert C using dual on(#{email}=C.email)
+			when matched then
+				update set C.no=#{no}, C.time=sysdate 
+			when not matched then
+				insert(email,no,time) values(#{email},#{no},sysdate)
 	</insert>
 	
 	<!-- 

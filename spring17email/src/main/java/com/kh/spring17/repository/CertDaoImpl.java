@@ -14,7 +14,7 @@ public class CertDaoImpl implements CertDao{
 	
 	@Override
 	public void insert(CertDto certDto) {
-		sqlSession.insert("cert.insert", certDto);
+		sqlSession.insert("cert.insert2", certDto);
 	}
 	
 }
