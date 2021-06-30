@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.spring18.entity.MemberDto;
+import com.kh.spring18.entity.ProductDto;
 import com.kh.spring18.repository.MemberDao;
+import com.kh.spring18.repository.ProductDao;
 
 //비동기 통신에 대응하는 컨트롤러 - ViewResolver 적용 받지 않음 
 @RestController //@Controller+@ResponseBody 
@@ -52,4 +54,33 @@ public class DataController {
 	public List<MemberDto> test4(){
 		return memberDao.list();
 	}
+	
+	@Autowired
+	private ProductDao productDao;
+	
+	@GetMapping("/product/list1")
+	public List<ProductDto> productList1(){
+		return productDao.list();
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

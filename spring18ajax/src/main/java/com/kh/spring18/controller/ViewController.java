@@ -13,4 +13,9 @@ public class ViewController {
 	public String test1() {
 		return "test1"; //jsp
 	}
+	
+	@GetMapping("/test2")
+	public String test2() {
+		return "test2";
+	}
 }
