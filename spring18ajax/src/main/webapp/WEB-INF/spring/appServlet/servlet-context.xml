@@ -49,6 +49,17 @@
 	-->
 	<annotation-driven/>
 	<resources location="/resources/" mapping="/res/**"></resources>
+<!-- 
+		파일 업로드 도구
+		= multipart/form-data를 처리하는 도구
+		= (주의) 아이디는 무조건 multipartResolver라고 지어야 한다
+		= org.springframework.web.multipart.commons.CommonsMultipartResolver
+	 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="UTF-8"></beans:property>
+		<beans:property name="maxUploadSize" value="10000000"></beans:property>
+		<beans:property name="maxUploadSizePerFile" value="1000000"></beans:property>
+	</beans:bean>
 	
 </beans:beans>
 
