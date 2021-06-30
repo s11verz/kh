@@ -149,6 +149,7 @@
 				
 				//폼 입력값을 전송 가능한 형태로 불러오기
 				//= serialize()는 form에 입력된 데이터를 Query String 으로 변환하는 명령
+				
 				var formdata = $(this).serialize();
 				console.log(formdata);
 				
@@ -169,6 +170,7 @@
 					}
 				});
 			});
+			
 			$("#complex-search-form").submit(function(e){
 				e.preventDefault();				
 				
@@ -262,7 +264,6 @@
     		</div>
     	</div>
     	
-    		
     	<!-- [3] 복합적인 항목들을 이용한 검색 -->
     	<div class="row mt-3">
     		<div class="col-md-10">
@@ -287,6 +288,30 @@
     					<label>최대가격</label>
 	    				<input type="text" name="maxPrice" class="form-control">
     				</div>
+    				
+    				<!-- 정렬 관련 항목을 추가 -->
+    				<div class="form-group">
+    					<label>정렬방식</label>
+    					<select name="ordering" class="form-control">
+							<option value="no">번호순</option>
+							<option value="name">이름순</option>
+							<option value="type">분류별</option>
+							<option value="priceDesc">높은 가격 순</option>
+							<option value="priceAsc">낮은 가격 순</option>    				
+	    				</select>
+    				</div>    		
+    				
+    				<!-- 페이징 관련 항목을 추가(페이지네이션과 연동) -->
+    				<div class="form-group">
+    					<label>페이지 번호</label>
+    					<input type="text" name="page" class="form-control">
+    				</div>
+    				
+    				<div class="form-group">
+    					<label>데이터 표시 개수</label>
+    					<input type="text" name="size" class="form-control">
+    				</div>
+    				
     				<div class="form-group">
     					<button type="submit" class="btn btn-outline-primary">검색</button>
     				</div>
@@ -307,4 +332,7 @@
     
 </body>
 </html>
+
+
+
 

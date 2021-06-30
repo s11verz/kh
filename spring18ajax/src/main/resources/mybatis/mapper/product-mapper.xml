@@ -24,44 +24,91 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	<!-- 올인원 검색 구문 -->
-	<select id="allInOneSearch" resultType="ProductDto" parameterType="ProductSearchVO">
-		select * from product
-		<!-- where라는 구문을 만들면 내부 상황에 따라 where 키워드를 설정 -->
-		<where>
-			<!-- 번호 일치 검색 -->
-			<if test="no != null">
-				and no = #{no}
-			</if>
-			<!-- 이름 유사 검색 : 문자열은 null 뿐 아니라 빈 문자열도 검사해야 한다 -->
-			<if test="name != null and name != ''">
-				<![CDATA[
-				and instr(name, #{name}) > 0
-				]]>
-			</if>
-			<!-- 분류 일치 검색 : 문자열은 null 뿐 아니라 빈 문자열도 검사해야 한다 -->
-			<if test="type != null and type != ''">
-				and type = #{type}
-			</if>
-			<!-- 가격 구간 검색 -->
-			<choose>
-				<when test="minPrice != null and maxPrice != null">
-					and price between #{minPrice} and #{maxPrice}
-				</when>
-				<when test="minPrice != null">
-					<![CDATA[
-					and price >= #{minPrice}
-					]]>
-				</when>
-				<when test="maxPrice != null">
-					<![CDATA[
-					and price <= #{maxPrice}
-					]]>
-				</when>
-			</choose>
-			
-		</where>
+	<!-- 
+		올인원 검색 구문(ft. 페이징)
+		- 시작글순서 : (페이지번호 * 페이지크기) - (페이지크기 - 1)
+		- 종료글순서 : 페이지번호 * 페이지크기
+	-->
+	<select id="allInOneSearchWithPagination" resultType="ProductDto" parameterType="ProductSearchVO">
+		select * from (
+			select rownum rn, TMP.* from (
+				
+				select * from product
+		
+				<!-- where라는 구문을 만들면 내부 상황에 따라 where 키워드를 설정 -->
+				<where>
+					<!-- 번호 일치 검색 -->
+					<if test="no != null">
+						and no = #{no}
+					</if>
+					<!-- 이름 유사 검색 : 문자열은 null 뿐 아니라 빈 문자열도 검사해야 한다 -->
+					<if test="name != null and name != ''">
+						<![CDATA[
+						and instr(name, #{name}) > 0
+						]]>
+					</if>
+					<!-- 분류 일치 검색 : 문자열은 null 뿐 아니라 빈 문자열도 검사해야 한다 -->
+					<if test="type != null and type != ''">
+						and type = #{type}
+					</if>
+					<!-- 가격 구간 검색 -->
+					<choose>
+						<when test="minPrice != null and maxPrice != null">
+							and price between #{minPrice} and #{maxPrice}
+						</when>
+						<when test="minPrice != null">
+							<![CDATA[
+							and price >= #{minPrice}
+							]]>
+						</when>
+						<when test="maxPrice != null">
+							<![CDATA[
+							and price <= #{maxPrice}
+							]]>
+						</when>
+					</choose>
+					
+				</where>
+				
+				<!-- 
+					정렬을 항목에 따라서 수행하기는 어렵고 추가적으로 정렬기준을 전달받아 구현
+					= mybatis도 자바 기반으로 코드를 변환하여 처리하기 때문에 비교를 equals로 수행
+					= null과 empty string만 비교연산자 사용 가능
+				 -->
+				<if test="ordering != null">
+					<choose>
+						<when test="ordering.equals('priceDesc')">
+							order by price desc
+						</when>
+						<when test="ordering.equals('priceAsc')">
+							order by price asc
+						</when>
+						<otherwise>
+							order by ${ordering} asc
+						</otherwise>
+					</choose>
+				</if>
+				
+			)TMP
+		) 
+		
+		where rn between 
+		<choose>
+			<when test="page != null and size != null">
+				(#{page} * #{size} - #{size} + 1) and (#{page} * #{size})
+			</when>
+			<when test="page != null">
+				(#{page} * 10 - #{size} + 1) and (#{page} * 10)
+			</when>
+			<when test="size != null">
+				1 and #{size}
+			</when>
+			<otherwise>
+				1 and 10
+			</otherwise>
+		</choose>
 	</select>
+	
 </mapper>
 
 

@@ -30,6 +30,6 @@ public class ProductDaoImple implements ProductDao{
 	
 	@Override
 	public List<ProductDto> search(ProductSearchVO productSearchVO){
-		return sqlSession.selectList("product.allInOneSearch",productSearchVO);
+		return sqlSession.selectList("product.allInOneSearchWithPagination", productSearchVO);
 	}
 }
