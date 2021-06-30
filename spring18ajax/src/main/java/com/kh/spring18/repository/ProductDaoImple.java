@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
+
 
 import com.kh.spring18.entity.ProductDto;
 
@@ -18,8 +18,13 @@ public class ProductDaoImple implements ProductDao{
 	@Override
 	public List<ProductDto> list() {
 		
-		return sqlSession.selectList("product.select01");
+//		return sqlSession.selectList("product.select01");
+		return sqlSession.selectList("product.select03");
 	}
 	
-	
+	@Override
+	public List<ProductDto> search(String name){
+//		return sqlSession.selectList("product.select02",name);
+		return sqlSession.selectList("product.select03",name);
+	}
 }

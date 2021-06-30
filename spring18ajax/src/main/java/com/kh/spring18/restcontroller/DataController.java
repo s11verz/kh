@@ -63,6 +63,11 @@ public class DataController {
 		return productDao.list();
 	}
 	
+	@GetMapping("/product/list2")
+	public List<ProductDto> productList2(@RequestParam String name){
+		return productDao.search(name);
+	}
+	
 }
 
 
