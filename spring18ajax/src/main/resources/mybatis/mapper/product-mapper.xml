@@ -23,5 +23,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where name=#{name}
 		</if>
 	</select>
+	
+	<!-- 올인원 검색 구문 -->
+	<select id="allInOneSearch" resultType="ProductDto" parameterType="ProductSearchVO">
+		select * from product
+		<!-- where라는 구문을 만들면 내부 상황에 따라 where 키워드를 설정 -->
+		<where>
+			<!-- 번호 일치 검색 -->
+			<if test="no > 0">
+				and no = #{no}
+			</if>
+			<!-- 이름 유사 검색 -->
+			<if test="name != null">
+				and instr(name, #{name}) > 0
+			</if>
+			<!-- 분류 일치 검색 -->
+			
+			<!-- 가격 구간 검색 -->
+		</where>
+	</select>
 
 </mapper>

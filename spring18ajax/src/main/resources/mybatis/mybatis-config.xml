@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	-->
 	<typeAliases>
 		<package name="com.kh.spring18.entity"/>
+		<package name="com.kh.spring18.vo"/>
 	</typeAliases>	
 	
 	<!-- 데이터베이스 환경 설정 -->

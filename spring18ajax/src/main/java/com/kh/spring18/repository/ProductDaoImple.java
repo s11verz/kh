@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 import com.kh.spring18.entity.ProductDto;
+import com.kh.spring18.vo.ProductSearchVO;
 
 @Repository
 public class ProductDaoImple implements ProductDao{
@@ -26,5 +26,10 @@ public class ProductDaoImple implements ProductDao{
 	public List<ProductDto> search(String name){
 //		return sqlSession.selectList("product.select02",name);
 		return sqlSession.selectList("product.select03",name);
+	}
+	
+	@Override
+	public List<ProductDto> search(ProductSearchVO productSearchVO){
+		return sqlSession.selectList("product.allInOneSearch",productSearchVO);
 	}
 }

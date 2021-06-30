@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import com.kh.spring18.entity.MemberDto;
 import com.kh.spring18.entity.ProductDto;
 import com.kh.spring18.repository.MemberDao;
 import com.kh.spring18.repository.ProductDao;
+import com.kh.spring18.vo.ProductSearchVO;
 
 //비동기 통신에 대응하는 컨트롤러 - ViewResolver 적용 받지 않음 
 @RestController //@Controller+@ResponseBody 
@@ -66,6 +68,11 @@ public class DataController {
 	@GetMapping("/product/list2")
 	public List<ProductDto> productList2(@RequestParam String name){
 		return productDao.search(name);
+	}
+	
+	@GetMapping("/product/list3")
+	public List<ProductDto> productList3(@ModelAttribute ProductSearchVO productSearchVO){
+		return productDao.search(productSearchVO);
 	}
 	
 }
