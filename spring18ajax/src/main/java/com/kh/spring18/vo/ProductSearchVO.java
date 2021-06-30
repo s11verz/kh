@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class ProductSearchVO {
-	private int no;
+	private Integer no;
 	private String name, type;
-	private int minPrice, maxPrice;
+	private Integer minPrice, maxPrice;
 	private String made, expire;
 
 }

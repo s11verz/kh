@@ -30,17 +30,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- where라는 구문을 만들면 내부 상황에 따라 where 키워드를 설정 -->
 		<where>
 			<!-- 번호 일치 검색 -->
-			<if test="no > 0">
+			<if test="no != null">
 				and no = #{no}
 			</if>
-			<!-- 이름 유사 검색 -->
-			<if test="name != null">
+			<!-- 이름 유사 검색 : 문자열은 null 뿐 아니라 빈 문자열도 검사해야 한다 -->
+			<if test="name != null and name != ''">
+				<![CDATA[
 				and instr(name, #{name}) > 0
+				]]>
 			</if>
-			<!-- 분류 일치 검색 -->
-			
+			<!-- 분류 일치 검색 : 문자열은 null 뿐 아니라 빈 문자열도 검사해야 한다 -->
+			<if test="type != null and type != ''">
+				and type = #{type}
+			</if>
 			<!-- 가격 구간 검색 -->
+			<choose>
+				<when test="minPrice != null and maxPrice != null">
+					and price between #{minPrice} and #{maxPrice}
+				</when>
+				<when test="minPrice != null">
+					<![CDATA[
+					and price >= #{minPrice}
+					]]>
+				</when>
+				<when test="maxPrice != null">
+					<![CDATA[
+					and price <= #{maxPrice}
+					]]>
+				</when>
+			</choose>
+			
 		</where>
 	</select>
-
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
