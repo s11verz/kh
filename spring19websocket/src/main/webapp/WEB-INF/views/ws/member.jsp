@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
-<h1>BasicServer 연결 예제</h1>
+<h1>MemberServer 연결 예제</h1>
 
 <button id="connect">연결</button>
 <button id="disconnect">종료</button>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h1>로그인 상태 : ${memberNo!=null}</h1>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<a href="${pageContext.request.contextPath}/member/login">로그인</a>
-<a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+<h2><a href="${pageContext.request.contextPath}/view/basic">기본 예제</a></h2>
+<h2><a href="${pageContext.request.contextPath}/view/member">로그인 연동 예제</a></h2>

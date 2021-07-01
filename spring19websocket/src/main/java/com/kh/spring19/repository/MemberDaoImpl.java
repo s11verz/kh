@@ -17,4 +17,9 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return sqlSession.selectOne("member.login",memberDto);
 	}
+	
+	@Override
+	public MemberDto get(int memberNo) {
+		return sqlSession.selectOne("member.get",memberNo);
+	}
 }

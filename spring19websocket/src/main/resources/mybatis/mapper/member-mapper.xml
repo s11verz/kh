@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" parameterType="MemberDto" resultType="MemberDto">
 		select * from member where member_id=#{memberId} and member_pw=#{memberPw}
 	</select>
+	
+	<select id="get" parameterType="int" resultType="MemberDto">
+		select * from member where member_no=#{memberNo}
+	</select>
 
 	
 </mapper>
