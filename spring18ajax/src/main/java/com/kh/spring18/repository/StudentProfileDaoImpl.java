@@ -13,36 +13,41 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.spring18.entity.StudentProfileDto;
 
 @Repository
-public class StudentProfileDaoImpl implements StudentProfileDao{
+public class StudentProfileDaoImpl implements StudentProfileDao {
+
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private final File baseDir=new File("/Users/silverz/git/upload/student");
-	
+	private final File baseDir = new File("/Users/silverz/git/upload/student");
+
 	@Override
 	public StudentProfileDto add(StudentProfileDto studentProfileDto) {
-		int profileNo=sqlSession.selectOne("studentProfile.sequence");
+		int profileNo = sqlSession.selectOne("studentProfile.sequence");
 		studentProfileDto.setProfileNo(profileNo);
-		sqlSession.insert("studentProfile.add",studentProfileDto);
+		studentProfileDto.setProfileSaveName(String.valueOf(profileNo));
+		sqlSession.insert("studentProfile.add", studentProfileDto);
 		return studentProfileDto;
 	}
 	
-	  @Override
-	   public void save(String fileName, MultipartFile file) throws IllegalStateException, IOException {
-	      File target = new File(baseDir, fileName);
-	      file.transferTo(target);
-	   }
-	  
-	  @Override
-		public StudentProfileDto get(int profileNo) {
-			return sqlSession.selectOne("studentProfile.get", profileNo);
-		}
+	@Override
+	public void save(String fileName, MultipartFile file) throws IllegalStateException, IOException {
+		File target = new File(baseDir, fileName);
+		file.transferTo(target);
+	}
 
-		@Override
-		public ByteArrayResource getFile(String fileName) throws IOException {
-			File target = new File(baseDir, fileName);
-			byte[] data = FileUtils.readFileToByteArray(target);
-			ByteArrayResource resource = new ByteArrayResource(data);
-			return resource;
-		}
+	@Override
+	public StudentProfileDto get(int profileNo) {
+		return sqlSession.selectOne("studentProfile.get", profileNo);
+	}
+
+	@Override
+	public ByteArrayResource getFile(String fileName) throws IOException {
+		File target = new File(baseDir, fileName);
+		byte[] data = FileUtils.readFileToByteArray(target);
+		ByteArrayResource resource = new ByteArrayResource(data);
+		return resource;
+	}
+	
 }
+
+

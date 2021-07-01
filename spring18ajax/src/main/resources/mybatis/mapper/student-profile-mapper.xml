@@ -4,10 +4,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 
-	매퍼 파일은 SQL 구문을 보관하는 파일을 말하며 일반적으로 "테이블당 1개" 만든다.
-	- namespace : 여러 개의 매퍼 중에 현재 매퍼를 식별하도록 지어주는 고유한 명칭(필수)
- -->
 <mapper namespace="studentProfile">
 	
 	<!-- 번호 생성 구문 -->
@@ -18,7 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 등록 구문 -->
 	<insert id="add" parameterType="StudentProfileDto">
 		insert into student_profile(
-			profile_no, profile_upload_name, profile_save_name, profile_content_type, profile_size
+			profile_no, 
+			profile_upload_name, 
+			profile_save_name,
+			profile_content_type, 
+			profile_size
 		)
 		values(
 			#{profileNo},
@@ -29,10 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="get" resultType="StudentProfileDto" parameterType="int">
+		select * from student_profile where profile_no = #{profileNo}
+	</select>
+	
 </mapper>
-
-
-
-
-
 
