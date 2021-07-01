@@ -56,6 +56,7 @@
 		-spring bean으로 등록  -->
 	<beans:bean id="basicServer" class="com.kh.spring19.ws.WebSocketBasicServer"></beans:bean>
 	<beans:bean id="memberServer" class="com.kh.spring19.ws.WebSocketMemberServer"></beans:bean>
+	<beans:bean id="channelServer" class="com.kh.spring19.ws.WebSocketChannelServer"></beans:bean>
 
 	
 	<websocket:handlers>
