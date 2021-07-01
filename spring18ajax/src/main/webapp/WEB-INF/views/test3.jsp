@@ -10,25 +10,31 @@
 		$("input[name=f]").on("input",function(){
 			//console.log(this.files);
 			if(this.files&&this.files[0]){
-			//if(this.files&&this.files.length>0){
+			//if(this.files&&this.files.length>0){ //파일 저장소 존재 및 0번 위치에 파일 존재 
 				console.log("파일이 선택되었습니다.");
 				
 				//jquery ajax에서 파일 업로드를 하려면 formData 객체가 필요 
 				var fd=new FormData();
 				//fd.append(이름, 데이터 또는 파일 )
 				fd.append("f",this.files[0]);
+				
+				var that=this;//$("input[name=f]")
+				
+				
 				//주의 : 반드시 ajax file upload 에서는 다음 세가지 설정을 해야 함 
 				//1. processData : false 설정 
 				//2. contentType : false 설정 
 				//3. type : "post" 설정 
 				$.ajax({
-					url:"${pageContext.request.contextPath}/data/student/upload",
+					url:"${pageContext.request.contextPath}/data/student/upload2",
 					type:"post",
 					processData:false,
 					contentType:false,
 					data:fd,
 					success:function(resp){
 						window.alert("업로드 완료");
+						var url = "${pageContext.request.contextPath}/data/student/download/"+resp.profileNo;
+						$("#preview").attr("src", url);
 					},
 					error:function(){
 						window.alert("업로드 실패");

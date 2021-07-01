@@ -1,6 +1,8 @@
 package com.kh.spring18.restcontroller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -49,17 +51,18 @@ public class StudentDataController {
 		studentProfileDao.save(studentProfileDto.getProfileSaveName(),f);
 		return result;
 	}
-	
+
 	@GetMapping("/download/{profileNo}")
-	public ResponseEntity<ByteArrayResource> download(@PathVariable int profileNo){
+	public ResponseEntity<ByteArrayResource> download(@PathVariable int profileNo) throws IOException{
 		StudentProfileDto studentProfileDto=studentProfileDao.get(profileNo); 
-		ByteArrayResource resource = studentProfileDao.getFile(profileNo);
+		ByteArrayResource resource = studentProfileDao.getFile(studentProfileDto.getProfileSaveName());
+		String fileName = URLEncoder.encode(studentProfileDto.getProfileUploadName(), "UTF-8");
 	      
 	      return ResponseEntity.ok()
 	                        .contentType(MediaType.APPLICATION_OCTET_STREAM)
 	                        .contentLength(0L)
 	                        .header(HttpHeaders.CONTENT_ENCODING,"UTF-8")
-	                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment:filename=\""+?)
+	                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+fileName+"\"")
 	                        .body(resource);
 
 	}
