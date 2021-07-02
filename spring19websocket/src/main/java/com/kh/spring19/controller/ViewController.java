@@ -26,7 +26,7 @@ public class ViewController {
 		//hi 채널 : http://localhost:8080/spring19/view/channel/hi
 		@GetMapping("/channel/{channel}")
 		public String channel(@PathVariable String channel, Model model) {
-			
+			model.addAttribute("channel", channel);
 			return "ws/channel";
 		}
 }

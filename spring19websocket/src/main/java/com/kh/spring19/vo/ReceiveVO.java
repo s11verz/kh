@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder 
-@JsonIgnoreProperties(value= {"content"})//없을수도 있음 
+@JsonIgnoreProperties//없을수도 있음 
 public class ReceiveVO {
 
 	private int type;
