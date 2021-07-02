@@ -75,7 +75,7 @@
 		= servlet-context에서 등록한 @Controller 제외 전부 스캔하여 등록
 		= @Repository , @Service , @Component 등이 등록
 	 -->
-	<context:component-scan base-package="com.kh.spring18">
+	<context:component-scan base-package="com.kh.spring20">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
@@ -90,6 +90,9 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dbcpSource"></property>
 	</bean>
+	
+	<!-- 암호화 도구 -->
+	<bean id="passwordEndocer" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 </beans>
 
