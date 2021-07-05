@@ -2,7 +2,6 @@ package com.kh.spring21.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.UUID;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +14,7 @@ import com.kh.spring21.vo.KakaoPayApprovePrepareVO;
 import com.kh.spring21.vo.KakaoPayApproveVO;
 import com.kh.spring21.vo.KakaoPayReadyPrepareVO;
 import com.kh.spring21.vo.KakaoPayReadyVO;
+import com.kh.spring21.vo.KakaoPaySearchVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +25,8 @@ public class KakaoPayService implements PayService{
 	//사업자 번호, Admin Key는 절대로 변하지 않는다
 	public static final String cid = "TC0ONETIME";
 	public static final String adminKey = "f6db56456d7ddef31a08cc2d1735c190";
+	public static final String kakaoAk = "KakaoAK " + adminKey;
+	public static final String contentType = "application/x-www-form-urlencoded;charset=utf-8";
 
 	@Override
 	public KakaoPayReadyVO ready(KakaoPayReadyPrepareVO kakaoPayReadyPrepareVO) throws URISyntaxException {
@@ -99,6 +101,33 @@ public class KakaoPayService implements PayService{
 				template.postForObject(uri, entity, KakaoPayApproveVO.class);
 		log.debug("approveVO = {}", approveVO);
 		return approveVO;
+	}
+	@Override
+	public KakaoPaySearchVO search(String tid) throws URISyntaxException {
+		//[1] 요청 도구 생성
+		RestTemplate template = new RestTemplate();
+		
+		//[2] Http Header 생성(ex : 편지봉투)
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", kakaoAk);
+		headers.add("Content-type", contentType);
+		
+		//[3] Http Body 생성(ex : 편지내용)
+		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+		body.add("cid", cid);
+		body.add("tid", tid);
+		
+		//[4] Http Header / Body 합성
+		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
+		
+		//[5] 목적지 주소 작성
+		URI uri = new URI("https://kapi.kakao.com/v1/payment/order");
+		
+		//[6] 전송
+		KakaoPaySearchVO searchVO = template.postForObject(uri, entity, KakaoPaySearchVO.class);
+		log.debug("searchVo = {}", searchVO);
+		
+		return searchVO;
 	}
 	
 	
