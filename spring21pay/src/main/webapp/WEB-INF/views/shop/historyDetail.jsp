@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     
-<h1>결제가 완료되었습니다.</h1>
-
-<hr>
-
 <h2>결제 상세 내역</h2>
 
 <p>
@@ -92,3 +88,8 @@
 		</ul>
 	</li>
 </ul>
+
+<h1><a href="refund?paymentNo=${paymentDto.paymentNo}&cancel_amount=${searchVO.amount.total}">전체 결제 취소</a></h1>
+
+
+
