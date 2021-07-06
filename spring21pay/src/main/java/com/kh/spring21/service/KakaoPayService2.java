@@ -32,7 +32,7 @@ public class KakaoPayService2 implements PayService{
 	private PaymentDao paymentDao;
 	
 	//사업자 번호, Admin Key는 절대로 변하지 않는다
-	public static final String cid = "TC0ONETIME ";
+	public static final String cid = "TC0ONETIME";
 	public static final String adminKey = "f6db56456d7ddef31a08cc2d1735c190";
 	public static final String kakaoAk = "KakaoAK " + adminKey;
 	public static final String contentType = "application/x-www-form-urlencoded;charset=utf-8";
