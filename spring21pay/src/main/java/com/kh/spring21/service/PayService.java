@@ -4,6 +4,8 @@ import java.net.URISyntaxException;
 
 import com.kh.spring21.vo.KakaoPayApprovePrepareVO;
 import com.kh.spring21.vo.KakaoPayApproveVO;
+import com.kh.spring21.vo.KakaoPayCancelPrepareVO;
+import com.kh.spring21.vo.KakaoPayCancelVO;
 import com.kh.spring21.vo.KakaoPayReadyPrepareVO;
 import com.kh.spring21.vo.KakaoPayReadyVO;
 import com.kh.spring21.vo.KakaoPaySearchVO;
@@ -15,4 +17,6 @@ public interface PayService {
 	KakaoPayApproveVO approve(KakaoPayApprovePrepareVO kakaoPayApprovePrepareVO) throws URISyntaxException;
 	//결제 조회 기능
 	KakaoPaySearchVO search(String tid) throws URISyntaxException;
+	//결제 취소 기능
+	KakaoPayCancelVO cancel(KakaoPayCancelPrepareVO prepareVO) throws URISyntaxException;
 }

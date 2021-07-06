@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -29,20 +30,27 @@ import lombok.extern.slf4j.Slf4j;
 public class Test06 {
 	
 	@Autowired
+	@Qualifier("kakaoPayService")
 	private PayService payService;
 	
 	@Test
 	public void test() throws URISyntaxException {
 		//카카오 결제 승인 요청
 		KakaoPayApprovePrepareVO prepareVO = KakaoPayApprovePrepareVO.builder()
-																	.tid("T2915485579753546278")
-																	.partner_order_id("a9293304-a49f-4161-b5b2-59eaa240c3b3")
-																	.partner_user_id("56e2abff-79af-4786-b46f-ff345977df5c")
-																	.pg_token("4a8a03e273927da12c67")
+																	.tid("T2915481989160886768")
+																	.partner_order_id("fb25870a-59e7-4cf3-986a-e7d5ec454442")
+																	.partner_user_id("51313920-67f7-4e6c-a616-1f12db4b09d9")
+																	.pg_token("58f24438aec4a21a4330")
 																.build();
 		KakaoPayApproveVO approveVO = payService.approve(prepareVO);
 		log.debug("approveVO = {}", approveVO);
 	}
 	
 }
+
+
+
+
+
+
 
