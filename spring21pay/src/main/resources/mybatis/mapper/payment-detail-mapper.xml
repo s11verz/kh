@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="paymentDetail">
+	
+	<insert id="add" parameterType="PaymentDetailDto">
+		insert into payment_detail values(
+			payment_detail_seq.nextval,
+			#{paymentDetailProduct},
+			#{paymentDetailQuantity},
+			#{paymentDetailAmount},
+			#{paymentDetailOrigin}
+		)
+	</insert>
+	
+	<!-- 
+		insert all 
+			into 테이블 values(값)
+			into 테이블 values(값)
+			into 테이블 values(값)
+		형태로 다량의 insert를 하나의 구문으로 수행 가능
+		(주의) 시퀀스 갱신 불가
+	 -->
+	<insert id="addAll" parameterType="map">
+		<foreach collection="list" item="paymentDetailDto" separator=" " open="insert all" close="select * from dual" >
+			into payment_detail values(
+				payment_detail_seq.nextval,
+				#{paymentDetailDto.paymentDetailProduct},
+				#{paymentDetailDto.paymentDetailQuantity},
+				#{paymentDetailDto.paymentDetailAmount},
+				#{paymentDetailDto.paymentDetailOrigin}
+			)
+		</foreach> 
+	</insert>
+	
+	<select id="get" parameterType="int" resultType="PaymentDetailDto">
+		select * from payment_detail 
+		where payment_detail_origin = #{payment_detail_origin}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+

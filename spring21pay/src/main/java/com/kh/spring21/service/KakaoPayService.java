@@ -164,4 +164,9 @@ public class KakaoPayService implements PayService{
 		
 		return cancelVO;
 	}
+	@Override
+	public KakaoPayReadyVO ready2(KakaoPayReadyPrepareVO prepareVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

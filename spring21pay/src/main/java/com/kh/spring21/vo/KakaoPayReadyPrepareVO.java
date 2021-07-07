@@ -1,5 +1,9 @@
 package com.kh.spring21.vo;
 
+import java.util.List;
+
+import com.kh.spring21.entity.ProductDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +21,8 @@ public class KakaoPayReadyPrepareVO {
 	
 	//상품번호를 추가
 	private int no;
+	
+	//다건 결제일 경우 결제 상품 내역을 저장
+		private List<ChunkVO> chunk;
+		private List<ProductDto> product;
 }

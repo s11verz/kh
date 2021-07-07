@@ -1,6 +1,8 @@
 package com.kh.spring21.controller;
 
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,13 +22,17 @@ import com.kh.spring21.entity.ProductDto;
 import com.kh.spring21.repository.PaymentDao;
 import com.kh.spring21.repository.ProductDao;
 import com.kh.spring21.service.PayService;
+import com.kh.spring21.vo.ChunkVO;
 import com.kh.spring21.vo.KakaoPayApprovePrepareVO;
 import com.kh.spring21.vo.KakaoPayApproveVO;
 import com.kh.spring21.vo.KakaoPayCancelPrepareVO;
 import com.kh.spring21.vo.KakaoPayReadyPrepareVO;
 import com.kh.spring21.vo.KakaoPayReadyVO;
 import com.kh.spring21.vo.KakaoPaySearchVO;
+import com.kh.spring21.vo.TestVO;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 @RequestMapping("/shop")
 public class ShoppingController {
@@ -128,6 +134,78 @@ public class ShoppingController {
 		payService.cancel(prepareVO);
 		return "redirect:historyDetail?paymentNo="+prepareVO.getPaymentNo();
 	}
+	
+	//다건 결제 확인 처리
+		@PostMapping("/buy2")
+		public String buy2(@RequestParam int[] no, Model model) {
+			log.debug("no = {}", Arrays.toString(no));
+			model.addAttribute("list", productDao.list(no));
+			return "shop/buy2";
+		}
+		
+//		[1] chunk라는 파라미터 데이터가 자동 매핑됨(별도의 해석기 등록 없이 불가능)
+//		public String confirm(@RequestParam ChunkVO[] chunk) {
+//		@PostMapping("/confirm2")
+//			log.debug("chunk = {}", Arrays.toString(chunk));
+//			return "redirect:https://www.naver.com";
+//		}
+		
+//		[2] TestVO 안에 있는 chunk 변수에 chunk 관련 데이터가 다 자동 매핑됨
+//		= @ModelAttribute는 자동 매핑이 주 목적이므로 처리에 문제가 없다
+		@PostMapping("/confirm2")
+		public String confirm(@ModelAttribute TestVO testVO,
+				HttpSession session) throws URISyntaxException {
+			List<ChunkVO> chunk = testVO.getChunk();
+			log.debug("chunk = {}", chunk);
+//			if(chunk == null || chunk.isEmpty()) return "redirect:오류페이지";
+			
+//			chunk 안에 있는 데이터들을 계산하여 결제 요청을 전송 + DB에도 등록
+//			= 반복을 통해 필요한 정보들을 합산(총 금액)
+			int memberNo = (int)session.getAttribute("memberNo");
+			ProductDto firstProductDto = productDao.get(chunk.get(0).getNo());
+			String itemName = firstProductDto.getName() + " 외 " + (chunk.size()-1) + "건";
+			
+			int totalAmount = 0;
+			int[] no = new int[chunk.size()];
+			for(int i=0; i < no.length; i++) {
+				no[i] = chunk.get(i).getNo();
+			}
+			List<ProductDto> choiceList = productDao.list(no);
+			
+			for(int i=0; i < chunk.size(); i++) {
+				//총금액 += 상품가격 * 주문수량;
+				totalAmount += choiceList.get(i).getPrice() * chunk.get(i).getQuantity();
+			}
+			
+			KakaoPayReadyPrepareVO prepareVO = 
+						KakaoPayReadyPrepareVO.builder()
+											.item_name(itemName)
+											.quantity(1)
+											.partner_user_id(String.valueOf(memberNo))
+											.total_amount(totalAmount)
+											.no(no[0])
+											.chunk(chunk)
+											.product(choiceList)
+										.build();
+			KakaoPayReadyVO readyVO = payService.ready2(prepareVO);
+			
+//			세션 데이터 추가(success에서 사용하기 위해)
+			session.setAttribute("partner_order_id", readyVO.getPartner_order_id());
+			session.setAttribute("partner_user_id", readyVO.getPartner_user_id());
+			session.setAttribute("tid", readyVO.getTid());
+			
+			return "redirect:"+readyVO.getNext_redirect_pc_url();
+		}
+		
+	}
 
-}
+
+
+
+
+
+
+
+
+
 

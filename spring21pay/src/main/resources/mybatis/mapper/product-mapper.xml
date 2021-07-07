@@ -16,6 +16,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from product where no = #{no}
 	</select>
 	
+	<!-- 
+		특정 번호의 상품 정보 목록
+		foreach를 사용하면 반복적인 내용을 작성할 수 있다.
+		- collection : 저장소의 이름
+		- item : 담을 변수 이름
+		- seperator : item 사이에 출력할 글자
+		- open : 시작 시 입력할 값
+		- close : 종료 시 입력할 값
+	-->
+	<select id="choice" parameterType="map" resultType="ProductDto">
+		select * from product 
+		where no in
+		<foreach collection="no" item="number" separator="," open="(" close=")">
+			#{number}
+		</foreach>
+	</select>
+	
+	
 </mapper>
 
 
