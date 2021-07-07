@@ -28,21 +28,21 @@
 			- JdbcTemplate 
 	-->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@10.211.55.3"></property>
-		<property name="username" value="study"></property>
-		<property name="password" value="study"></property>
+		<property name="driverClassName" value="${database.driver}"></property>
+		<property name="url" value="${database.url}"></property>
+		<property name="username" value="${database.username}"></property>
+		<property name="password" value="${database.password}"></property>
 	</bean>
 	
 	<bean id="dbcpSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@10.211.55.3"></property>
-		<property name="username" value="study"></property>
-		<property name="password" value="study"></property>
+		<property name="driverClassName" value="${database.driver}"></property>
+		<property name="url" value="${database.url}"></property>
+		<property name="username" value="${database.username}"></property>
+		<property name="password" value="${database.password}"></property>
 		
-		<property name="maxTotal" value="20"></property>
-		<property name="maxIdle" value="10"></property>
-		<property name="maxWaitMillis" value="3000"></property>
+		<property name="maxTotal" value="${database.max-total}"></property>
+		<property name="maxIdle" value="${database.max-idle}"></property>
+		<property name="maxWaitMillis" value="${database.max-wait}"></property>
 	</bean>
 	
 	<!-- 
@@ -81,27 +81,27 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-<!-- 
-	transaction 설정
-	1. 트랜잭션 관련 annotation 활성화 
-	2. 트랜잭션 매니저를 생성하며 연결 정보를 전달 (commit/rollback) - id를 transactionManager로 설정, 실제로 사용중인 연결 객체의 참조를 전달 
- -->
-	<tx:annotation-driven/>	
+	<!-- 
+		transaction 설정
+		1. 트랜잭션 관련 annotation 활성화
+		2. 트랜잭션 매니저를 생성하며 연결 정보를 전달(commit/rollback)
+			= id를 transactionManager로 설정(?)
+			= 실제로 사용중인 연결 객체의 참조를 전달
+	 -->
+	<tx:annotation-driven/>
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dbcpSource"></property>
 	</bean>
 	
-	<!-- 
-	schedular 설정 -task namespace를 추가하고 annotatio 활성화 설정 수행
-	 -->
-	<task:annotation-driven/>
 	
-	<!-- 이메일 발송 도구 등록(JavaMailSenderImpl) -->
+	<!-- 
+		이메일 발송 도구 등록(JavaMailSenderImpl)
+	 -->
 	<bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com"></property>
-		<property name="port" value="587"></property>
-		<property name="username" value="silverzz0124"></property>
-		<property name="password" value="dmswldmswl!"></property>
+		<property name="host" value="${email.host}"></property>
+		<property name="port" value="${email.port}"></property>
+		<property name="username" value="${email.username}"></property>
+		<property name="password" value="${email.password}"></property>
 		
 		<property name="javaMailProperties">
 			<props>
@@ -114,21 +114,10 @@
 		</property>
 	</bean>
 	
+	<task:annotation-driven/>
+
+	<!-- property file 등록 -->
+	<context:property-placeholder location="classpath:/properties/**/*.properties"/>
+
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
